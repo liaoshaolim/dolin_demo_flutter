@@ -1,0 +1,25 @@
+## MacOS
+.DS_Store
+
+## Dart
+.dart_tool/
+.pub/
+.packages
+
+## Flutter
+build/
+.android/
+.ios/
+android/
+ios/
+.flutter-plugins
+
+## IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
