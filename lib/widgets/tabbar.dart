@@ -1,4 +1,4 @@
-import 'package:dolin_demo_flutter/modules/home/home.dart';
+import 'package:dolin_demo_flutter/modules/douban/home/home.dart';
 import 'package:dolin_demo_flutter/modules/mine.dart';
 import 'package:flutter/material.dart';
 

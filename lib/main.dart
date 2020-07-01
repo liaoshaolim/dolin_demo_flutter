@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'config/constants.dart';
+import 'modules/douban/detail/detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -94,7 +95,8 @@ class _MyAppState extends State<MyApp> {
       },
       routes: {
         '/': (context) => const DLTabbar(),
-        'theme_select': (context) => const ThemeSelectPage()
+        'theme_select': (context) => const ThemeSelectPage(),
+        'douban_detail': (context) => const DoubanDetail()
       },
       initialRoute: '/',
     );
