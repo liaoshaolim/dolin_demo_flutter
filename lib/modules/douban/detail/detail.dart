@@ -4,8 +4,10 @@ import 'data/model.dart';
 import 'data/req.dart';
 
 class DoubanDetail extends StatefulWidget {
-  const DoubanDetail({Key key, this.movieId}) : super(key: key);
+  const DoubanDetail({Key key, this.movieId, this.movieImgUrl})
+      : super(key: key);
   final String movieId;
+  final String movieImgUrl;
 
   @override
   _DoubanDetailState createState() => _DoubanDetailState();
@@ -52,6 +54,7 @@ class _DoubanDetailState extends State<DoubanDetail> {
               _Header(
                 model: _model,
                 heroTag: widget.movieId,
+                imgUrl: widget.movieImgUrl,
               ),
               const SizedBox(
                 height: 10,
@@ -114,9 +117,11 @@ class _DoubanDetailState extends State<DoubanDetail> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({Key key, this.model, this.heroTag}) : super(key: key);
+  const _Header({Key key, this.model, this.heroTag, this.imgUrl})
+      : super(key: key);
   final Model model;
   final String heroTag;
+  final String imgUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +140,7 @@ class _Header extends StatelessWidget {
                 borderRadius: const BorderRadius.all(Radius.circular(2)),
                 child: CachedNetworkImage(
                   fit: BoxFit.cover,
-                  imageUrl: '${model?.images?.medium ?? ''}',
+                  imageUrl: imgUrl,
                   placeholder: (context, url) => const Center(
                     child: SizedBox(
                       width: 50,

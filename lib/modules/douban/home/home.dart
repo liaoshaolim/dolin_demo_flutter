@@ -105,7 +105,10 @@ class _Item extends StatelessWidget {
       onTap: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (BuildContext context) {
-          return DoubanDetail(movieId: subject.id);
+          return DoubanDetail(
+            movieId: subject?.id ?? '',
+            movieImgUrl: subject?.images?.medium ?? '',
+          );
         }));
       },
       child: Container(
