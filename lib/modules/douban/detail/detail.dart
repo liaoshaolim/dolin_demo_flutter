@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dolin_demo_flutter/widgets/loading_container.dart';
 import 'package:flutter/material.dart';
 import 'data/model.dart';
 import 'data/req.dart';
@@ -15,11 +16,13 @@ class DoubanDetail extends StatefulWidget {
 
 class _DoubanDetailState extends State<DoubanDetail> {
   Model _model;
+  bool _isLoading = true;
 
   void _req() async {
     final data = await DouBanDetailReq().data(movieId: widget?.movieId ?? '');
 
     _model = Model.fromJson(data);
+    _isLoading = false;
     if (mounted) {
       setState(() {});
     }
@@ -44,74 +47,77 @@ class _DoubanDetailState extends State<DoubanDetail> {
         backgroundColor: const Color(0xFF65594F),
         elevation: 0,
       ),
-      body: SafeArea(
-          child: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              _Header(
-                model: _model,
-                heroTag: widget.movieId,
-                imgUrl: widget.movieImgUrl,
+      body: LoadingContainer(
+          isLoading: _isLoading,
+          cover: true,
+          child: SafeArea(
+              child: SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  _Header(
+                    model: _model,
+                    heroTag: widget.movieId,
+                    imgUrl: widget.movieImgUrl,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '剧情简介',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    '${_model?.summary ?? 'xxx'}',
+                    // maxLines: 4,
+                    // overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    '演职员',
+                    style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.normal),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                      width: double.infinity,
+                      height: 165,
+                      child: ListView.separated(
+                        scrollDirection: Axis.horizontal,
+                        separatorBuilder: (context, index) => const SizedBox(
+                          width: 10,
+                        ),
+                        itemBuilder: (context, index) {
+                          final Casts obj = _model.casts[index];
+                          return _CastItem(
+                            imgUrl: obj?.avatars?.small ?? '',
+                            name: obj?.name ?? '',
+                          );
+                        },
+                        itemCount: _model?.casts?.length ?? 0,
+                      )),
+                ],
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                '剧情简介',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                '${_model?.summary ?? 'xxx'}',
-                // maxLines: 4,
-                // overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                '演职员',
-                style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.white,
-                    fontWeight: FontWeight.normal),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Container(
-                  width: double.infinity,
-                  height: 165,
-                  child: ListView.separated(
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      width: 10,
-                    ),
-                    itemBuilder: (context, index) {
-                      final Casts obj = _model.casts[index];
-                      return _CastItem(
-                        imgUrl: obj?.avatars?.small ?? '',
-                        name: obj?.name ?? '',
-                      );
-                    },
-                    itemCount: _model?.casts?.length ?? 0,
-                  )),
-            ],
-          ),
-        ),
-      )),
+            ),
+          ))),
     );
   }
 }

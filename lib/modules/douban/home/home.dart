@@ -128,11 +128,14 @@ class _Item extends StatelessWidget {
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
                     imageUrl: '${subject?.images?.medium ?? ''}',
-                    placeholder: (context, url) => const Center(
+                    placeholder: (context, url) => Center(
                       child: SizedBox(
                         width: 50,
                         height: 50,
-                        child: CircularProgressIndicator(),
+                        child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(
+                              Theme.of(context).primaryColor),
+                        ),
                       ),
                     ),
                     errorWidget: (context, url, error) =>
