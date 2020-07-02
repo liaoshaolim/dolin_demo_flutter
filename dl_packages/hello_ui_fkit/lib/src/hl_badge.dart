@@ -7,7 +7,7 @@
 import 'package:flutter/material.dart';
 
 class HLBadge extends StatelessWidget {
-  HLBadge({
+  const HLBadge({
     @required this.child,
     Key key,
     this.text = '',
@@ -59,14 +59,14 @@ class HLBadge extends StatelessWidget {
                 child: Container(
                   alignment: Alignment.center,
                   padding: badgeTextPadding,
-                  child: Text(
-                    _badgeText,
-                    style: textStyle,
-                  ),
                   decoration: BoxDecoration(
                     color: bgColor,
                     shape: _badgeShape,
                     borderRadius: _badgeRadius,
+                  ),
+                  child: Text(
+                    _badgeText,
+                    style: textStyle,
                   ),
                 ),
               ))

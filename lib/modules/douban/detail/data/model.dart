@@ -227,19 +227,19 @@ class Rating extends Object {
 @JsonSerializable()
 class Details extends Object {
   @JsonKey(name: '1')
-  int one;
+  num one;
 
   @JsonKey(name: '2')
-  int two;
+  num two;
 
   @JsonKey(name: '3')
-  int three;
+  num three;
 
   @JsonKey(name: '4')
-  int four;
+  num four;
 
   @JsonKey(name: '5')
-  int five;
+  num five;
 
   Details(
     this.one,

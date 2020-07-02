@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dolin_demo_flutter/modules/douban/detail/detail.dart';
 import 'package:dolin_demo_flutter/modules/douban/home/data/model.dart';
 import 'package:dolin_demo_flutter/modules/douban/home/data/req.dart';
 import 'package:dolin_demo_flutter/util/refresh_util.dart';
@@ -102,7 +103,10 @@ class _Item extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, 'douban_detail');
+        Navigator.push(context,
+            MaterialPageRoute(builder: (BuildContext context) {
+          return DoubanDetail(movieId: subject.id);
+        }));
       },
       child: Container(
         width: double.infinity,

@@ -159,8 +159,8 @@ Map<String, dynamic> _$RatingToJson(Rating instance) => <String, dynamic>{
     };
 
 Details _$DetailsFromJson(Map<String, dynamic> json) {
-  return Details(json['1'] as int, json['2'] as int, json['3'] as int,
-      json['4'] as int, json['5'] as int);
+  return Details(json['1'] as num, json['2'] as num, json['3'] as num,
+      json['4'] as num, json['5'] as num);
 }
 
 Map<String, dynamic> _$DetailsToJson(Details instance) => <String, dynamic>{

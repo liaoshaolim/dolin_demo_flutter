@@ -79,20 +79,20 @@ class _BottomSheetWidget extends StatelessWidget {
         child: AnimatedBuilder(
           animation: route.animation,
           builder: (context, child) => ClipRect(
-                child: CustomSingleChildLayout(
-                  delegate: _BottomPickerLayout(route.animation.value,
-                      contentHeight: MediaQuery.of(context).size.height),
-                  child: Scaffold(
-                      backgroundColor: Colors.transparent,
-                      body: SafeArea(
-                        child: HLBottomSheetWidget(
-                          list: list,
-                          title: title,
-                          onTapCallBack: onTapCallBack,
-                        ),
-                      )),
-                ),
-              ),
+            child: CustomSingleChildLayout(
+              delegate: _BottomPickerLayout(route.animation.value,
+                  contentHeight: MediaQuery.of(context).size.height),
+              child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: SafeArea(
+                    child: HLBottomSheetWidget(
+                      list: list,
+                      title: title,
+                      onTapCallBack: onTapCallBack,
+                    ),
+                  )),
+            ),
+          ),
         ),
       );
 }
@@ -123,7 +123,8 @@ class _BottomPickerLayout extends SingleChildLayoutDelegate {
 
 /// HLBottomSheetWidget
 class HLBottomSheetWidget extends StatefulWidget {
-  HLBottomSheetWidget({Key key, this.list, this.title, this.onTapCallBack})
+  const HLBottomSheetWidget(
+      {Key key, this.list, this.title, this.onTapCallBack})
       : super(key: key);
   final List<String> list;
   final String title;

@@ -443,7 +443,7 @@ class AlertCommandArea extends StatelessWidget {
 
 /// alert 操作区域
 class AlertActionArea extends StatelessWidget {
-  AlertActionArea(
+  const AlertActionArea(
       {Key key,
       this.onTapLeftButton,
       this.onTapRightButton,
@@ -516,7 +516,7 @@ class AlertActionArea extends StatelessWidget {
 
 // 图片在上方（本地资源）
 class DialogWithTopLocalImg extends BasicDialog {
-  DialogWithTopLocalImg({
+  const DialogWithTopLocalImg({
     @required String localImgPath,
     @required String title,
     @required String content,
@@ -542,7 +542,7 @@ class DialogWithTopLocalImg extends BasicDialog {
 
 // 图片在上方（网络资源）
 class DialogWithTopNetImg extends BasicDialog {
-  DialogWithTopNetImg({
+  const DialogWithTopNetImg({
     @required String netImgUrl,
     @required String title,
     @required String content,
@@ -566,7 +566,7 @@ class DialogWithTopNetImg extends BasicDialog {
 
 // 图片在中间（本地资源）
 class DialogWithCenterLocalImg extends BasicDialog {
-  DialogWithCenterLocalImg({
+  const DialogWithCenterLocalImg({
     @required String localImgPath,
     @required String title,
     @required String content,
@@ -593,7 +593,7 @@ class DialogWithCenterLocalImg extends BasicDialog {
 
 // 图片在中间（网络资源）
 class DialogWithCenterNetImg extends BasicDialog {
-  DialogWithCenterNetImg({
+  const DialogWithCenterNetImg({
     @required String netImgUrl,
     @required String title,
     @required String content,
@@ -618,7 +618,7 @@ class DialogWithCenterNetImg extends BasicDialog {
 
 // 带“注释”
 class DialogWithCommand extends BasicDialog {
-  DialogWithCommand({
+  const DialogWithCommand({
     @required String title,
     @required String content,
     @required VoidCallback onTapButton,
@@ -643,7 +643,7 @@ class DialogWithCommand extends BasicDialog {
 
 /// 常见
 class DialogNormal extends BasicDialog {
-  DialogNormal({
+  const DialogNormal({
     @required String title,
     @required String content,
     @required VoidCallback onTapLeftButton,
@@ -664,7 +664,7 @@ class DialogNormal extends BasicDialog {
 
 /// 常见，只带标题
 class DialogNormalOnlyTitle extends BasicDialog {
-  DialogNormalOnlyTitle({
+  const DialogNormalOnlyTitle({
     @required String title,
     @required VoidCallback onTapLeftButton,
     @required VoidCallback onTapRightButton,
@@ -682,7 +682,7 @@ class DialogNormalOnlyTitle extends BasicDialog {
 
 /// 常见，只带内容
 class DialogNormalOnlyContent extends BasicDialog {
-  DialogNormalOnlyContent({
+  const DialogNormalOnlyContent({
     @required String content,
     @required VoidCallback onTapLeftButton,
     @required VoidCallback onTapRightButton,

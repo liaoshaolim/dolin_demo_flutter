@@ -1,7 +1,11 @@
+include: package:pedantic/analysis_options.yaml
+
 analyzer:
   strong-mode:
-    implicit-casts: false
-    implicit-dynamic: false
+    implicit-casts: true
+    implicit-dynamic: true
+  exclude:
+    - lib/src/**.g.dart
 
 # 完整Lint支持列表 https://dart-lang.github.io/linter/lints/
 linter:
@@ -12,7 +16,7 @@ linter:
     - always_require_non_null_named_parameters # 总是验证必要参数非null
     # - always_specify_types
     - annotate_overrides # 强制 override 注解
-    # - avoid_annotating_with_dynamic
+    - avoid_annotating_with_dynamic
     - avoid_as # 避免使用 as
     - avoid_bool_literals_in_conditional_expressions # 避免在表达式使用 bool
     - avoid_catches_without_on_clauses # 禁止无约束捕获异常
@@ -40,7 +44,7 @@ linter:
     - avoid_single_cascade_in_expression_statements # 禁止单个级联调用
     - avoid_slow_async_io # 禁止低速IO操作
     - avoid_types_as_parameter_names # 禁止将类型名作为参数名
-    - avoid_types_on_closure_parameters # 禁止给函数表达式添加类型声明, 可自动类型推断
+    # - avoid_types_on_closure_parameters # 禁止给函数表达式添加类型声明, 可自动类型推断
     - avoid_unused_constructor_parameters # 构造方法禁止定义不使用的参数
     - avoid_void_async # 禁止无返回值的 async 方法
     - await_only_futures # await 必须使用 Future,保证向后兼容
@@ -66,14 +70,14 @@ linter:
     - join_return_with_assignment # 可能时合并返回体
     - library_names # 库名使用 下划线命名法
     - library_prefixes # 使用 下划线命名法 导库
-    # - lines_longer_than_80_chars # 行宽80字符
+    - lines_longer_than_80_chars # 行宽80字符
     - list_remove_unrelated_type # 禁止使用 remove 删除和 Iterable 不同的参数类型
     - literal_only_boolean_expressions # 禁止条件判断编译时固定的 bool
     - no_adjacent_strings_in_list # 不要在list定义时使用相邻字符串,使用 +
     - no_duplicate_case_values # 不要使用多个相同的 case 值
     - non_constant_identifier_names # 使用小驼峰命名 变量
     - null_closures # 禁止使用 null 作为某些系统函数的参数传递
-    - omit_local_variable_types # 可推断的局部类型定义可以省略
+    # - omit_local_variable_types # 可推断的局部类型定义可以省略
     - one_member_abstracts # 使用 typedef 定义只有一个方法的抽象类(接口)
     - only_throw_errors # 只允许 throw Error 和 Exception
     - overridden_fields # 不允许重写变量
@@ -92,9 +96,8 @@ linter:
     - prefer_const_literals_to_create_immutables # 使用 const 实例化 list 和 map 作为函数的不可变参数
     - prefer_constructors_over_static_methods # 推荐使用构造方法而不是静态方法构造实例
     - prefer_contains # 推荐使用 contains 而不是 indexOf
-    - prefer_double_quotes
     - prefer_equal_for_default_values # 推荐使用 = 分隔参数和默认值
-    - prefer_expression_function_bodies # 使用 => 缩短单个返回
+    # - prefer_expression_function_bodies # 使用 => 缩短单个返回
     - prefer_final_fields # 推荐使用 final 定义私有变量
     - prefer_final_in_for_each # 再 for-each 中，如果未重新定义，推荐使用 final
     - prefer_final_locals # 对于局部变量，如果未重新定义，推荐使用 final
@@ -106,7 +109,7 @@ linter:
     - prefer_if_null_operators
     - prefer_initializing_formals # 尽可能使用 initializing formals 是初始化更简单
     - prefer_inlined_adds
-    - prefer_int_literals # 数字可读性展示
+    # - prefer_int_literals # 数字可读性展示
     - prefer_interpolation_to_compose_strings # 使用插值定于文字
     - prefer_is_empty # 不要使用 length 判断集合为空
     - prefer_is_not_empty # 不要使用 !x.isEmpty 判断集合不为空
