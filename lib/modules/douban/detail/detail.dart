@@ -69,8 +69,8 @@ class _DoubanDetailState extends State<DoubanDetail> {
               ),
               Text(
                 '${_model?.summary ?? 'xxx'}',
-                maxLines: 4,
-                overflow: TextOverflow.ellipsis,
+                // maxLines: 4,
+                // overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.white,
@@ -172,7 +172,7 @@ class _Header extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  '${model?.tags.toString() ?? '-'}',
+                  '${model?.tags?.toString() ?? '-'}',
                   style: const TextStyle(
                     fontSize: 14,
                     color: Color(0xFFA9A49F),
