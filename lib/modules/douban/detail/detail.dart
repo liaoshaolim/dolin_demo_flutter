@@ -1,7 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:dolin_demo_flutter/widgets/loading.dart';
 import 'package:flutter/material.dart';
-import 'package:hello_ui_fkit/hello_ui_fkit.dart';
 import 'data/model.dart';
 import 'data/req.dart';
 
@@ -53,6 +51,7 @@ class _DoubanDetailState extends State<DoubanDetail> {
             children: <Widget>[
               _Header(
                 model: _model,
+                heroTag: widget.movieId,
               ),
               const SizedBox(
                 height: 10,
@@ -115,8 +114,9 @@ class _DoubanDetailState extends State<DoubanDetail> {
 }
 
 class _Header extends StatelessWidget {
-  const _Header({Key key, this.model}) : super(key: key);
+  const _Header({Key key, this.model, this.heroTag}) : super(key: key);
   final Model model;
+  final String heroTag;
 
   @override
   Widget build(BuildContext context) {
@@ -125,22 +125,26 @@ class _Header extends StatelessWidget {
       height: 170,
       child: Row(
         children: <Widget>[
-          Container(
-            width: 100,
-            height: 170,
-            child: ClipRRect(
-              borderRadius: const BorderRadius.all(Radius.circular(2)),
-              child: CachedNetworkImage(
-                fit: BoxFit.cover,
-                imageUrl: '${model?.images?.medium ?? ''}',
-                placeholder: (context, url) => const Center(
-                  child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(),
+          Hero(
+            tag: heroTag,
+            transitionOnUserGestures: true,
+            child: Container(
+              width: 100,
+              height: 170,
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(2)),
+                child: CachedNetworkImage(
+                  fit: BoxFit.cover,
+                  imageUrl: '${model?.images?.medium ?? ''}',
+                  placeholder: (context, url) => const Center(
+                    child: SizedBox(
+                      width: 50,
+                      height: 50,
+                      child: CircularProgressIndicator(),
+                    ),
                   ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
           ),

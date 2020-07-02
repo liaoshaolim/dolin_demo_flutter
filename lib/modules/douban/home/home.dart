@@ -114,22 +114,27 @@ class _Item extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
-            Container(
-              width: 100,
-              height: 150,
-              child: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(2)),
-                child: CachedNetworkImage(
-                  fit: BoxFit.cover,
-                  imageUrl: '${subject?.images?.medium ?? ''}',
-                  placeholder: (context, url) => const Center(
-                    child: SizedBox(
-                      width: 50,
-                      height: 50,
-                      child: CircularProgressIndicator(),
+            Hero(
+              tag: '${subject.id}',
+              transitionOnUserGestures: true,
+              child: Container(
+                width: 100,
+                height: 150,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(2)),
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: '${subject?.images?.medium ?? ''}',
+                    placeholder: (context, url) => const Center(
+                      child: SizedBox(
+                        width: 50,
+                        height: 50,
+                        child: CircularProgressIndicator(),
+                      ),
                     ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
             ),
