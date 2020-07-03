@@ -32,8 +32,10 @@ class _MyAppState extends State<MyApp> {
   StreamSubscription _colorSubscription;
 
   Future<String> _getCacheColor(String colorKey) async {
+    // ignore: omit_local_variable_types
     final SharedPreferences sp = await SharedPreferences.getInstance();
-    String colorStr = sp.getString(colorKey);
+    var colorStr = sp.getString(colorKey);
+    // ignore: prefer_conditional_assignment
     if (colorStr == null) {
       colorStr = 'green';
     }
@@ -52,6 +54,7 @@ class _MyAppState extends State<MyApp> {
 
   // ignore: avoid_void_async
   void _cacheColor(String colorStr) async {
+    // ignore: omit_local_variable_types
     final SharedPreferences sp = await SharedPreferences.getInstance();
     await sp.setString('themeColorStr', colorStr);
   }
@@ -64,6 +67,7 @@ class _MyAppState extends State<MyApp> {
     _colorSubscription = eventBus.on<ThemeColorEvent>().listen((event) {
       // 缓存主题色
       _cacheColor(event.colorStr);
+      // ignore: omit_local_variable_types
       final Color color = themeColorMap[event.colorStr];
       setState(() {
         _primaryColor = color;
@@ -91,7 +95,8 @@ class _MyAppState extends State<MyApp> {
         scaffoldBackgroundColor: Colors.white,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      supportedLocales: const [Locale('zh', 'CH'), Locale('en', 'US')],
+      // TODO：国际化，暂时注释掉，启动有短暂红屏 2020年07月03日
+      // supportedLocales: const [Locale('zh', 'CH'), Locale('en', 'US')],
       builder: (context, child) {
         /// 保证文字大小不受手机系统设置影响 https://www.kikt.top/posts/flutter/layout/dynamic-text/
         return MediaQuery(
