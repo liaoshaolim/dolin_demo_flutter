@@ -1,3 +1,4 @@
+import 'package:dolin_demo_flutter/widgets/count_down.dart';
 import 'package:dolin_demo_flutter/widgets/horizontal_line.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
@@ -37,6 +38,13 @@ class _MinePageState extends State<MinePage> {
                 },
               ),
               const HorizontalLine(),
+              Container(
+                height: 44,
+                alignment: Alignment.centerRight,
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: const CountDownWidget(countDownSeconds: 5),
+              )
             ],
           ),
         ),
