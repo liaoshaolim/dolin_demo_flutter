@@ -1,5 +1,6 @@
 import 'package:dolin_demo_flutter/widgets/horizontal_line.dart';
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({Key key}) : super(key: key);
@@ -67,9 +68,17 @@ class _Header extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'Dolin',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                Shimmer.fromColors(
+                  baseColor: Colors.black,
+                  highlightColor: Colors.green,
+                  child: Text(
+                    'Dolin',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 40.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 Text(
                   'GitHub:',
