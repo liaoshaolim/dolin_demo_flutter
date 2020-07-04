@@ -2,9 +2,10 @@
  * @Author: shaolin 
  * @Date: 2020-07-03 16:53:19 
  * @Last Modified by: shaolin
- * @Last Modified time: 2020-07-03 17:37:53
+ * @Last Modified time: 2020-07-04 15:59:46
  */
 import 'dart:async';
+import 'package:dolin_demo_flutter/util/event_bus.dart';
 import 'package:flutter/material.dart';
 
 /// 倒计时组件
@@ -44,6 +45,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   int _seconds;
   String _verifyStr = '发送验证码';
   bool _isCanTap = true;
+  StreamSubscription _countDownSubscription;
 
   void _startTimer() {
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
@@ -75,6 +77,10 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   void initState() {
     super.initState();
     _seconds = widget.countDownSeconds;
+    // 订阅 eventbus
+    _countDownSubscription = eventBus.on<CountDownEvent>().listen((event) {
+      _startTimer();
+    });
   }
 
   @override
@@ -86,7 +92,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: _isCanTap ? _startTimer : null,
+      onTap: widget.onTap,
       child: Text(
         '$_verifyStr',
         textAlign: TextAlign.right,

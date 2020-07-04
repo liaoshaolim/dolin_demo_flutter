@@ -1,3 +1,4 @@
+import 'package:dolin_demo_flutter/util/event_bus.dart';
 import 'package:dolin_demo_flutter/widgets/count_down.dart';
 import 'package:dolin_demo_flutter/widgets/horizontal_line.dart';
 import 'package:flutter/material.dart';
@@ -38,12 +39,23 @@ class _MinePageState extends State<MinePage> {
                 },
               ),
               const HorizontalLine(),
+              _Item(
+                title: '触发倒计时',
+                onTapItem: () {
+                  eventBus.fire(CountDownEvent());
+                },
+              ),
               Container(
                 height: 44,
                 alignment: Alignment.centerRight,
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: const CountDownWidget(countDownSeconds: 5),
+                child: CountDownWidget(
+                  countDownSeconds: 5,
+                  onTap: () {
+                    print('请求接口，返回成功之后发送通知');
+                  },
+                ),
               )
             ],
           ),
