@@ -48,6 +48,15 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   StreamSubscription _countDownSubscription;
 
   void _startTimer() {
+    // 触发 timer 时，先进行不可点操作，再 _seconds - 1
+    // 因为 timer 不会上来就执行内部动作
+    if (mounted) {
+      setState(() {
+        _verifyStr = '$_seconds' 's';
+        _isCanTap = false;
+      });
+      _seconds--;
+    }
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_seconds <= 0) {
         _cancelTimer();
@@ -86,13 +95,14 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   @override
   void dispose() {
     _cancelTimer();
+    _countDownSubscription.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: widget.onTap,
+      onTap: _isCanTap ? widget.onTap : null,
       child: Text(
         '$_verifyStr',
         textAlign: TextAlign.right,

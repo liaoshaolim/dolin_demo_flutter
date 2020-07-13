@@ -39,12 +39,6 @@ class _MinePageState extends State<MinePage> {
                 },
               ),
               const HorizontalLine(),
-              _Item(
-                title: '触发倒计时',
-                onTapItem: () {
-                  eventBus.fire(CountDownEvent());
-                },
-              ),
               Container(
                 height: 44,
                 alignment: Alignment.centerRight,
@@ -53,7 +47,9 @@ class _MinePageState extends State<MinePage> {
                 child: CountDownWidget(
                   countDownSeconds: 5,
                   onTap: () {
-                    print('请求接口，返回成功之后发送通知');
+                    // TODO:短信接口请求成功之后执行（同微信逻辑）
+                    print('发送通知');
+                    eventBus.fire(CountDownEvent());
                   },
                 ),
               )
