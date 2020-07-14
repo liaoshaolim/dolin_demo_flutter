@@ -47,9 +47,8 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   bool _isCanTap = true;
   StreamSubscription _countDownSubscription;
 
-  void _startTimer() {
-    // 触发 timer 时，先进行不可点操作，再 _seconds - 1
-    // 因为 timer 不会上来就执行内部动作
+  /// 处理大于 0 的逻辑
+  void _dealwithGreaterThan0() {
     if (mounted) {
       setState(() {
         _verifyStr = '$_seconds' 's';
@@ -57,23 +56,27 @@ class _CountDownWidgetState extends State<CountDownWidget> {
       });
       _seconds--;
     }
+  }
+
+  /// 处理小于等于 0 的逻辑
+  void _dealwithLessThanOrEqualTo0() {
+    _cancelTimer();
+    _seconds = widget.countDownSeconds;
+    _verifyStr = '重新发送';
+    _isCanTap = true;
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  void _startTimer() {
+    // 因为 timer 不会上来就执行内部动作,so 先手动处理一次大于 0 的情况
+    _dealwithGreaterThan0();
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_seconds <= 0) {
-        _cancelTimer();
-        _seconds = widget.countDownSeconds;
-        _verifyStr = '重新发送';
-        _isCanTap = true;
-        if (mounted) {
-          setState(() {});
-        }
-        return;
+        _dealwithLessThanOrEqualTo0();
       } else {
-        _verifyStr = '$_seconds' 's';
-        _isCanTap = false;
-        if (mounted) {
-          setState(() {});
-        }
-        _seconds--;
+        _dealwithGreaterThan0();
       }
     });
   }
