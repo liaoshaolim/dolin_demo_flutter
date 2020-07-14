@@ -1,3 +1,4 @@
+import 'package:dolin_demo_flutter/dart_study/mei_tuan.dart';
 import 'package:dolin_demo_flutter/util/event_bus.dart';
 import 'package:dolin_demo_flutter/widgets/count_down.dart';
 import 'package:dolin_demo_flutter/widgets/horizontal_line.dart';
@@ -29,6 +30,13 @@ class _MinePageState extends State<MinePage> {
                 title: '主题',
                 onTapItem: () {
                   Navigator.pushNamed(context, 'theme_select');
+                },
+              ),
+              const HorizontalLine(),
+              _Item(
+                title: 'tab_bar_page',
+                onTapItem: () {
+                  Navigator.pushNamed(context, 'tab_bar_page');
                 },
               ),
               const HorizontalLine(),

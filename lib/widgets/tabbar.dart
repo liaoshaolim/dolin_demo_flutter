@@ -5,7 +5,7 @@
  * @Last Modified time: 2020-07-02 17:17:31 
  */
 import 'package:dolin_demo_flutter/modules/douban/home/home.dart';
-import 'package:dolin_demo_flutter/modules/mine.dart';
+import 'package:dolin_demo_flutter/modules/mine/mine.dart';
 import 'package:flutter/material.dart';
 
 typedef TapItemCallback = void Function(int index);

@@ -6,7 +6,8 @@
  */
 import 'dart:async';
 
-import 'package:dolin_demo_flutter/modules/theme_select.dart';
+import 'package:dolin_demo_flutter/modules/mine/tab_bar.dart';
+import 'package:dolin_demo_flutter/modules/mine/theme_select.dart';
 import 'package:dolin_demo_flutter/util/event_bus.dart';
 import 'package:dolin_demo_flutter/widgets/tabbar.dart';
 import 'package:flutter/material.dart';
@@ -107,7 +108,8 @@ class _MyAppState extends State<MyApp> {
       routes: {
         '/': (context) => const DLTabbar(),
         'theme_select': (context) => const ThemeSelectPage(),
-        'douban_detail': (context) => const DoubanDetail()
+        'douban_detail': (context) => const DoubanDetail(),
+        'tab_bar_page': (context) => const TabBarPage()
       },
       initialRoute: '/',
     );
