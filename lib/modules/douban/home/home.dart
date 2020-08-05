@@ -125,22 +125,27 @@ class _Item extends StatelessWidget {
                 height: 150,
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(2)),
-                  child: CachedNetworkImage(
+                  child: FadeInImage.assetNetwork(
                     fit: BoxFit.cover,
-                    imageUrl: '${subject?.images?.medium ?? ''}',
-                    placeholder: (context, url) => Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(
-                              Theme.of(context).primaryColor),
-                        ),
-                      ),
-                    ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    image: '${subject?.images?.medium ?? ''}',
+                    placeholder: 'assets/imgs/dolin.jpeg',
                   ),
+                  // CachedNetworkImage(
+                  //   fit: BoxFit.cover,
+                  //   imageUrl: '${subject?.images?.medium ?? ''}',
+                  //   placeholder: (context, url) => Center(
+                  //     child: SizedBox(
+                  //       width: 50,
+                  //       height: 50,
+                  //       child: CircularProgressIndicator(
+                  //         valueColor: AlwaysStoppedAnimation(
+                  //             Theme.of(context).primaryColor),
+                  //       ),
+                  //     ),
+                  //   ),
+                  //   errorWidget: (context, url, error) =>
+                  //       const Icon(Icons.error),
+                  // ),
                 ),
               ),
             ),
