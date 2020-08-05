@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 typedef TabChange = Function(int index);
 
+/// boost：促进、支援、推动
 class TabBarBoost extends StatefulWidget {
   const TabBarBoost(
       {@required this.children,

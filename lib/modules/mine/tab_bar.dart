@@ -44,7 +44,10 @@ class _TabBarPageState extends State<TabBarPage> with TickerProviderStateMixin {
     print(sc2.getInfo());
 
     return Scaffold(
-      appBar: HLAppBar('tab_bar_study'),
+      appBar: HLAppBar(
+        'tab_bar_study',
+        onPressed: () => Navigator.pop(context),
+      ),
       body: Column(
         children: <Widget>[
           TabBar(

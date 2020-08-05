@@ -33,6 +33,7 @@ class _ThemeSelectPageState extends State<ThemeSelectPage> {
         itemBuilder: (context, index) => InkWell(
           onTap: () {
             eventBus.fire(ThemeColorEvent(themeColorMap.keys.toList()[index]));
+            Navigator.pop(context);
           },
           child: Container(
             color: themeColorMap[themeColorMap.keys.toList()[index]],
